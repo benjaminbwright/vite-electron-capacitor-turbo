@@ -1,10 +1,11 @@
 const { app, protocol, BrowserWindow } = require('electron');
+const electronSquirrelStartup = require('electron-squirrel-startup');
 const path = require('path');
 const url = require('url')
 const isDev = process.env.IS_DEV === 'true'
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) {
+if (electronSquirrelStartup) {
   app.quit();
 }
 
@@ -20,21 +21,11 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   if (!isDev) {
-    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
+    mainWindow.loadFile('dist/index.html');
   } else {
-    mainWindow.loadURL("http://localhost:5173/")
+    mainWindow.loadURL("http://localhost:5000/")
     mainWindow.webContents.openDevTools();
   }
-  
-  // mainWindow.loadURL('app://../dist/index.html');
-  // mainWindow.loadURL(url.format({
-  //   pathname: 'index.html',    /* Attention here: origin is path.join(__dirname, 'index.html') */
-  //   protocol: 'file',
-  //   slashes: true
-  // }))
-
-  // Open the DevTools.
-  
 };
 
 // This method will be called when Electron has finished

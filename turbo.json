@@ -8,6 +8,13 @@
     "lint": {
       "outputs": []
     },
+    "compile": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        "dist/**",
+        "build/**"
+      ]
+    },
     "dev": {
       "cache": false
     }

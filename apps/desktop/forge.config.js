@@ -1,6 +1,8 @@
 module.exports = {
   packagerConfig: {},
-  rebuildConfig: {},
+  rebuildConfig: {
+    buildPath: "../node_modules"
+  },
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
